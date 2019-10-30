@@ -9,6 +9,8 @@ server.listen(4000, () => {
   console.log("==== listening on port 4000 ====");
 });
 
+server.use(express.json());
+
 server.post("/api/users", (req, res) => {
   const { name, bio } = req.body;
   if (!name || !bio) {
