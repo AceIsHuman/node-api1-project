@@ -1,4 +1,5 @@
 // implement your API here
+const db = require("./data/db.js");
 
 const express = require("express");
 
@@ -14,5 +15,15 @@ server.post("/api/users", (req, res) => {
     res
       .status(400)
       .json({ errorMessage: "Please provide name and bio for the user." });
+  } else {
+    db.insert(req.body)
+      .then(user => {
+        res.status(201).json(user);
+      })
+      .catch(err => {
+        res.status(500).json({
+          error: "There was an error while saving the user to the database"
+        });
+      });
   }
 });
