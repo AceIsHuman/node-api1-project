@@ -41,3 +41,14 @@ server.get("/api/users", (req, res) => {
         .json({ error: "The users information could not be retrieved." });
     });
 });
+
+server.get("/api/users/:id", (req, res) => {
+  const id = req.params.id;
+  db.findById(id)
+    .then()
+    .catch(err => {
+      res
+        .status(404)
+        .json({ message: "The user with the specified ID does not exist." });
+    });
+});
