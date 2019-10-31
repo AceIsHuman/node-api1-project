@@ -96,5 +96,7 @@ server.put("/api/users/:id", (req, res) => {
           .json({ message: "The user with the specified ID does not exist." });
       }
     })
-    .catch();
+    .catch(err => {
+      res.status(500).json({ error: "The user information could not be modified." });
+    });
 });
